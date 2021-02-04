@@ -1,0 +1,16 @@
+{
+  "name": "demo-authconnect-azureb2c",
+  "integrations": {
+    "capacitor": {},
+    "enterprise": {
+      "keyId": 1605,
+      "productKey": "key_e3464db64ca542e294e6301fd21c5d74",
+      "appId": "83f8620e",
+      "orgId": "3d0d48cc-eb27-4b38-b7c3-d7f5ac9068ca",
+      "registries": [
+        "@ionic-enterprise;https://registry.ionicframework.com/"
+      ]
+    }
+  },
+  "type": "angular"
+}
