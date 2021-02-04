@@ -9,17 +9,20 @@ export const azureWebConfig: IonicAuthOptions = {
     // The platform which we are running on
     platform: 'web',
     // client or application id for provider
-    clientID: '47172767-16f5-4da5-9bfa-3294c3d2ff77',
-    // clientID: '30fa7950-762c-4f67-88cb-c834accdefec',
+    // clientID: '47172767-16f5-4da5-9bfa-3294c3d2ff77', // tdp
+    // clientID: '30fa7950-762c-4f67-88cb-c834accdefec', // ionic
+    clientID: '247617a1-7fd2-46e0-beda-bb1955504200', // politica personalizada
     // the discovery url for the provider
     // OpenID configuration
     // discoveryUrl: 'https://vikingsquad.b2clogin.com/vikingsquad.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_Signup_Signin',
-    discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_InicioSession_Telefonica',
+    // discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_InicioSession_Telefonica',
+    discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_signup_signin',
     // the URI to redirect to after log in
     redirectUri: 'http://localhost:8100/login',
     // requested scopes from provider
     // scope: 'openid offline_access email profile https://vikingsquad.onmicrosoft.com/webinar/user_impersonation',
-    scope: 'openid offline_access email profile https://tdppocb2c.onmicrosoft.com/prueba2/user_impersonation',
+    // scope: 'openid offline_access email profile https://tdppocb2c.onmicrosoft.com/prueba2/user_impersonation',
+    scope: 'openid https://tdppocb2c.onmicrosoft.com/api1/demo.write https://tdppocb2c.onmicrosoft.com/api1/demo.read',
     // the URL to redirect to after log out
     logoutUrl: 'http://localhost:8100/login',
     // Show provider login in either current window or new tab
@@ -37,12 +40,14 @@ export const azureNativeConfig: IonicAuthOptions = {
     // the discovery url for the provider
     // OpenID configuration
     // discoveryUrl: 'https://vikingsquad.b2clogin.com/vikingsquad.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_Signup_Signin',
-    discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_InicioSession_Telefonica',
+    // discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_InicioSession_Telefonica',
+    discoveryUrl: 'https://tdppocb2c.b2clogin.com/tdppocb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_signup_signin',
     // the URI to redirect to after log in
     redirectUri: 'io.ionic.demo.ac.azureb2c://login',
     // requested scopes from provider
     // scope: 'openid offline_access email profile https://vikingsquad.onmicrosoft.com/webinar/user_impersonation',
-    scope: 'openid offline_access email profile https://tdppocb2c.onmicrosoft.com/prueba2/user_impersonation',
+    // scope: 'openid offline_access email profile https://tdppocb2c.onmicrosoft.com/prueba2/user_impersonation',
+    scope: 'openid https://tdppocb2c.onmicrosoft.com/api1/demo.write https://tdppocb2c.onmicrosoft.com/api1/demo.read',
     // the URL to redirect to after log out
     logoutUrl: 'io.ionic.demo.ac.azureb2c://login',
     // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
