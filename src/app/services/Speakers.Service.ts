@@ -11,7 +11,8 @@ export class SpeakersService {
 
     constructor(private http: HttpClient) {
         this.headers = new HttpHeaders({
-            'Ocp-Apim-Subscription-Key': '675cd0dfe70e40c7aab70a2257f7542e'
+            // 'Ocp-Apim-Subscription-Key': '675cd0dfe70e40c7aab70a2257f7542e'
+            'Ocp-Apim-Subscription-Key': '8a4b67326dae4cbe81083861f7945569'
         });
     }
 

@@ -36,7 +36,8 @@ export const azureNativeConfig: IonicAuthOptions = {
     platform: 'capacitor',
     // client or application id for provider
     // clientID: 'b69e2ee7-b67a-4e26-8a38-f7ca30d2e4d4',
-    clientID: '47172767-16f5-4da5-9bfa-3294c3d2ff77',
+    // clientID: '47172767-16f5-4da5-9bfa-3294c3d2ff77',
+    clientID: '247617a1-7fd2-46e0-beda-bb1955504200', // politica personalizada
     // the discovery url for the provider
     // OpenID configuration
     // discoveryUrl: 'https://vikingsquad.b2clogin.com/vikingsquad.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_Signup_Signin',
