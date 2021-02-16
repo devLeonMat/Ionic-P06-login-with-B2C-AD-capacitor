@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
-import {SpeakersService} from "../services/Speakers.Service";
-import {UserModel} from "../models/user.model";
-import {IonicAuth} from "@ionic-enterprise/auth";
+import {SpeakersService} from '../services/Speakers.Service';
+import {UserModel} from '../models/user.model';
+import {IonicAuth} from '@ionic-enterprise/auth';
 
 @Component({
     selector: 'app-home',
@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
         this.authService.getIdToken().then(value => {
             this.user2 = value;
         }, reason => {
-            console.log(reason)
+            console.log(reason);
         });
 
         console.log(this.user2);
@@ -46,40 +46,51 @@ export class HomePage implements OnInit {
             console.log('isAccessTokenAvailable', value);
             localStorage.setItem('isAccessTokenAvailable', JSON.stringify(value));
         }, reason => {
-            console.log('Reason', reason)
+            console.log('Reason', reason);
         });
         this.authService.isAccessTokenExpired().then(value => {
             console.log('isAccessTokenExpired', value);
             localStorage.setItem('isAccessTokenExpired', JSON.stringify(value));
         }, reason => {
-            console.log('Reason isAccessTokenExpired', reason)
+            console.log('Reason isAccessTokenExpired', reason);
         });
-        this.authService.getAuthResponse().then(value=> {
-            console.log('AuthResponse', value);
-            localStorage.setItem('AuthResponse', value.id_token);
-        }, reason => {
-            console.log('Reason AuthResponse', reason)
-        });
-        this.authService.getIdToken().then(value => {
-            localStorage.setItem('ionicAuth.getIdToken()', value);
-            this.speakersService.getSpeakers(localStorage.getItem('AuthResponse'))
-        })
-
-        // this.authService.getAccessToken().then(value => {
-        //     console.log('getAccessToken', value);
-        //     localStorage.setItem('getAccessToken', JSON.stringify(value));
+        // this.authService.getAuthResponse().then(value => {
+        //     console.log('AuthResponse', value);
+        //     localStorage.setItem('AuthResponse', value.id_token);
         // }, reason => {
-        //     console.log(reason);
-        // })
-
+        //     console.log('Reason AuthResponse', reason);
+        // });
+        this.authService.getIdToken().then(value => {
+            localStorage.setItem('ionicAuth.getIdToken()', JSON.stringify(value));
+            this.authService.isAccessTokenExpired().then((expired) => {
+                if (!expired) {
+                    this.callSpeakers();
+                } else {
+                    this.authService.getAccessToken().then(refreshToken => {
+                        console.log('refreshToken', refreshToken);
+                        this.callSpeakers();
+                    }, reason => {
+                        console.log(reason);
+                    });
+                }
+            }, reason => {
+                console.log(reason);
+            });
+        });
     }
 
     callSpeakers() {
-        this.speakersService.getSpeakers(localStorage.getItem('AuthResponse')).subscribe(value1 => {
-            this.speakers = value1;
-        }, error => {
-            this.error = error
-        })
+        this.authService.getAuthResponse().then(value => {
+            console.log('AuthResponse', value);
+            localStorage.setItem('AuthResponse', value.id_token);
+            this.speakersService.getSpeakers(value.id_token).subscribe(value1 => {
+                this.speakers = value1;
+            }, error => {
+                this.error = error;
+            });
+        }, reason => {
+            console.log('Reason AuthResponse', reason);
+        });
     }
 
 }
