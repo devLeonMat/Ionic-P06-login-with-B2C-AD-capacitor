@@ -61,7 +61,7 @@ export const azureNativeConfig: IonicAuthOptions = {
 };
 
 export const environment = {
-    production: false
+    production: false,
 };
 
 /*

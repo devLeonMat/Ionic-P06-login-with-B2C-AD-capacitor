@@ -54,33 +54,16 @@ export class HomePage implements OnInit {
         }, reason => {
             console.log('Reason isAccessTokenExpired', reason)
         });
+        this.authService.getAuthResponse().then(value=> {
+            console.log('AuthResponse', value);
+            localStorage.setItem('AuthResponse', value.id_token);
+        }, reason => {
+            console.log('Reason AuthResponse', reason)
+        });
         this.authService.getIdToken().then(value => {
             localStorage.setItem('ionicAuth.getIdToken()', value);
-            // this.speakersService.getSpeakers(localStorage.getItem('_ionicAuth.idToken.247617a1-7fd2-46e0-beda-bb1955504200')).subscribe(value1 => {
-            this.authService.isAccessTokenExpired().then((expired) => {
-                if (!expired) {
-                    this.callSpeakers();
-                } else {
-                    // this.authService.getRefreshToken().then(refreshToken => {
-                    //     console.log('refreshToken', refreshToken);
-                    //     this.callSpeakers()
-                    // }, reason => {
-                    //     console.log(reason)
-                    // })
-                    this.authService.getAccessToken().then(refreshToken => {
-                        console.log('refreshToken', refreshToken);
-                        this.callSpeakers()
-                    }, reason => {
-                        console.log(reason)
-                    })
-                }
-            }, reason => {
-                console.log(reason)
-            })
-        }, reason => {
-            console.log('ERROR', reason)
+            this.speakersService.getSpeakers(localStorage.getItem('AuthResponse'))
         })
-
 
         // this.authService.getAccessToken().then(value => {
         //     console.log('getAccessToken', value);
@@ -92,7 +75,7 @@ export class HomePage implements OnInit {
     }
 
     callSpeakers() {
-        this.speakersService.getSpeakers(localStorage.getItem('_ionicAuth.idToken.247617a1-7fd2-46e0-beda-bb1955504200')).subscribe(value1 => {
+        this.speakersService.getSpeakers(localStorage.getItem('AuthResponse')).subscribe(value1 => {
             this.speakers = value1;
         }, error => {
             this.error = error
@@ -100,21 +83,3 @@ export class HomePage implements OnInit {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
