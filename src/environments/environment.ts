@@ -48,7 +48,7 @@ export const azureNativeConfig: IonicAuthOptions = {
     // requested scopes from provider
     // scope: 'openid offline_access email profile https://vikingsquad.onmicrosoft.com/webinar/user_impersonation',
     // scope: 'openid offline_access email profile https://tdppocb2c.onmicrosoft.com/prueba2/user_impersonation',
-    scope: 'openid https://tdppocb2c.onmicrosoft.com/api1/demo.write https://tdppocb2c.onmicrosoft.com/api1/demo.read',
+    scope: 'openid https://tdppocb2c.onmicrosoft.com/api1/demo.write https://tdppocb2c.onmicrosoft.com/api1/demo.read offline_access',
     // the URL to redirect to after log out
     logoutUrl: 'io.ionic.demo.ac.azureb2c://login',
     // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
