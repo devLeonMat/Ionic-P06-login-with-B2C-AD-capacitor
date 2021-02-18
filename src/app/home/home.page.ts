@@ -54,33 +54,39 @@ export class HomePage implements OnInit {
         }, reason => {
             console.log('Reason isAccessTokenExpired', reason)
         });
-        this.authService.getIdToken().then(value => {
-            localStorage.setItem('ionicAuth.getIdToken()', value);
-            this.authService.isAccessTokenExpired().then((expired) => {
-                if (!expired) {
-                    this.callSpeakers();
-                } else {
-                    this.authService.getAccessToken().then(refreshToken => {
-                        console.log('refreshToken', refreshToken);
-                        this.callSpeakers()
-                    }, reason => {
-                        console.log(reason)
-                    })
-                }
-            }, reason => {
-                console.log(reason)
-            })
+        // this.authService.getIdToken().then(value => {
+        //     localStorage.setItem('ionicAuth.getIdToken()', JSON.stringify(value));
+        this.authService.isAccessTokenExpired().then((expired) => {
+            console.log('EXPIRED', expired);
+            if (!expired) {
+                this.callSpeakers();
+            } else {
+                this.authService.getAccessToken().then(refreshToken => {
+                    console.log('refreshToken', refreshToken);
+                    this.callSpeakers()
+                }, reason => {
+                    console.log(reason)
+                })
+            }
         }, reason => {
-            console.log('ERROR', reason)
+            console.log(reason)
         })
+        // }, reason => {
+        //     console.log('ERROR', reason)
+        // })
     }
 
     callSpeakers() {
         console.log('IDTOKEN', localStorage.getItem('_ionicAuth.idToken.247617a1-7fd2-46e0-beda-bb1955504200'));
-        this.speakersService.getSpeakers(localStorage.getItem('_ionicAuth.idToken.247617a1-7fd2-46e0-beda-bb1955504200')).subscribe(value1 => {
-            this.speakers = value1;
-        }, error => {
-            this.error = error
+        this.authService.getAuthResponse().then(value => {
+            console.log('TOKEN ID', JSON.stringify(value));
+            console.log('TOKEN ID', value.id_token);
+            // this.speakersService.getSpeakers(localStorage.getItem('_ionicAuth.idToken.247617a1-7fd2-46e0-beda-bb1955504200')).subscribe(value1 => {
+            this.speakersService.getSpeakers(value.id_token).subscribe(value1 => {
+                this.speakers = value1;
+            }, error => {
+                this.error = error
+            })
         })
     }
 
